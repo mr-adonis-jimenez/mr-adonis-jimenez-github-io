@@ -1,0 +1,88 @@
+profile:
+  name: Adonis Jimenez
+  title: Technical Support Engineer | Data, Automation & Analytics
+  location: South Florida
+  tagline: >
+    Building reliable systems, dashboards, APIs, and automation tools
+    with a focus on clarity, resilience, and execution.
+  email: adonis.jimenez@example.com
+
+links:
+  github: https://github.com/mr-adonis-jimenez
+  linkedin: https://linkedin.com/in/mr-adonis-jimenez
+  pages: https://mr-adonis-jimenez.github.io
+
+skills:
+  core:
+    - Python
+    - JavaScript
+    - SQL
+    - Git
+  frameworks:
+    - Streamlit
+    - FastAPI
+  data:
+    - Pandas
+    - NumPy
+  tooling:
+    - GitHub Actions
+    - Docker
+    - Postman
+  platforms:
+    - Linux
+    - GitHub Pages
+
+projects:
+  - name: Sales Horizon
+    slug: sales-horizon
+    description: >
+      Interactive sales forecasting dashboard built with Streamlit.
+      Designed to be immediately runnable with a clear entry point and
+      reproducible environment.
+    tech:
+      - Python
+      - Streamlit
+      - Pandas
+      - NumPy
+    repo: https://github.com/mr-adonis-jimenez/Sales-Horizon
+    demo: null
+    highlights:
+      - Canonical Streamlit entry point (app.py)
+      - CSV upload with automatic charting
+      - Reproducible virtual environment
+
+  - name: Geo Analytics API
+    slug: geo-analytics-api
+    description: >
+      FastAPI service providing regional geo-analytics data with clean
+      REST endpoints and optional visualization support.
+    tech:
+      - Python
+      - FastAPI
+      - Pandas
+    repo: https://github.com/mr-adonis-jimenez/geo-analytics-api
+    demo: null
+    highlights:
+      - /health and /geo/summary endpoints
+      - Deterministic startup with uvicorn
+      - Ready for Postman, Docker, or cloud deploy
+
+  - name: Help Desk Intake
+    slug: help-desk-intake
+    description: >
+      Client-side help desk intake and ticket tracking application
+      running entirely in the browser with persistent storage.
+    tech:
+      - JavaScript
+      - HTML
+      - CSS
+    repo: https://github.com/mr-adonis-jimenez/Help-Desk-Intake
+    demo: https://mr-adonis-jimenez.github.io/Help-Desk-Intake/
+    highlights:
+      - Ticket lifecycle management
+      - Client-side persistence
+      - CSV export for reporting
+
+meta:
+  site_name: Adonis Jimenez – Portfolio
+  repo_url: https://github.com/mr-adonis-jimenez/mr-adonis-jimenez.github.io
