@@ -2,12 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ site.data.data.meta.site_name }}</title>
+
+  <title>
+    {% if page.title %}
+      {{ page.title }} · {{ site.data.data.meta.site_name }}
+    {% else %}
+      {{ site.data.data.meta.site_name }}
+    {% endif %}
+  </title>
+
+  <meta name="description" content="{{ site.data.data.profile.tagline }}">
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="{{ page.title | default: site.data.data.meta.site_name }}">
+  <meta property="og:description" content="{{ site.data.data.profile.tagline }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+
+  <!-- Mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-  <main>
-    {{ content }}
-  </main>
+  {{ content }}
 </body>
 </html>
