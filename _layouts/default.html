@@ -2,29 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- Primary Meta Tags -->
   <title>
     {% if page.title %}
       {{ page.title }} · {{ site.data.data.meta.site_name }}
     {% else %}
-      {{ site.data.data.meta.site_name }}
+      {{ site.data.data.meta.site_name }} - {{ site.data.data.profile.title }}
     {% endif %}
   </title>
-
+  <meta name="title" content="{% if page.title %}{{ page.title }} · {{ site.data.data.meta.site_name }}{% else %}{{ site.data.data.meta.site_name }} - {{ site.data.data.profile.title }}{% endif %}">
   <meta name="description" content="{{ site.data.data.profile.tagline }}">
-
-  <!-- OpenGraph -->
-  <meta property="og:title" content="{{ page.title | default: site.data.data.meta.site_name }}">
-  <meta property="og:description" content="{{ site.data.data.profile.tagline }}">
+  <meta name="author" content="{{ site.data.data.profile.name }}">
+  <meta name="keywords" content="technical support, cloud computing, devops, automation, IT specialist, {{ site.data.data.profile.name }}">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-
-  <!-- Mobile -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.data.data.meta.site_name }}{% endif %}">
+  <meta property="og:description" content="{{ site.data.data.profile.tagline }}">
+  <meta property="og:site_name" content="{{ site.data.data.meta.site_name }}">
+  <meta property="og:locale" content="en_US">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.data.data.meta.site_name }}{% endif %}">
+  <meta property="twitter:description" content="{{ site.data.data.profile.tagline }}">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon-16x16.png' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
+  
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ site.data.data.profile.name }}",
+    "jobTitle": "{{ site.data.data.profile.title }}",
+    "description": "{{ site.data.data.profile.tagline }}",
+    "url": "{{ site.url }}",
+    "sameAs": [
+      "{{ site.data.data.links.github }}",
+      "{{ site.data.data.links.linkedin }}"
+    ]
+  }
+  </script>
 </head>
 <body>
-  {{ content }}
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="skip-link" aria-label="Skip to main content">Skip to main content</a>
+  
+  <main id="main-content" role="main" aria-label="Main content">
+    {{ content }}
+  </main>
+  
+  <!-- Dark mode toggle -->
+  <button id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false" class="theme-toggle">
+    <span class="theme-toggle-icon" aria-hidden="true">🌓</span>
+  </button>
+  
+  <script>
+    // Dark mode toggle functionality
+    (function() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const currentTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+      
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      themeToggle.setAttribute('aria-pressed', currentTheme === 'dark');
+      
+      themeToggle.addEventListener('click', function() {
+        const theme = document.documentElement.getAttribute('data-theme');
+        const newTheme = theme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeToggle.setAttribute('aria-pressed', newTheme === 'dark');
+      });
+      
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) {
+          const newTheme = e.matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', newTheme);
+          themeToggle.setAttribute('aria-pressed', newTheme === 'dark');
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
